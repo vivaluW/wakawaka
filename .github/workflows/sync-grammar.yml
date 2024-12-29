@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     paths:
       - 'grammar/**'
+      - 'public/**'
   workflow_dispatch:
 
 jobs:
@@ -19,14 +20,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          
-      - name: Create Grammar Points JSON
+      
+      - name: Create Output Directory
         run: |
-          mkdir -p public
+          mkdir -p _site
+          cp -r public/* _site/
+          
+      - name: Generate Grammar Points JSON
+        run: |
           node scripts/generate-grammar.js
+          mv grammar-points.json _site/
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./_site
