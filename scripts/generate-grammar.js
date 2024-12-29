@@ -41,14 +41,9 @@ grammarFiles.forEach(file => {
   }
 });
 
-// 确保 public 文件夹存在
-if (!fs.existsSync('public')) {
-  fs.mkdirSync('public');
-}
-
 // 写入 JSON 文件
 fs.writeFileSync(
-  'public/grammar-points.json',
+  'grammar-points.json',
   JSON.stringify(grammarPoints, null, 2)
 );
 
