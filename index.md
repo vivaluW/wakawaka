@@ -1,40 +1,57 @@
 # 日语语法点索引
 
-## Basic Grammar Points
+## 基本语法
+
+### Basic Grammar Points
 [详细说明](basic_grammar_points.md)
 
-## 复杂句子结构
+### 复杂句子结构
 [详细说明](complex_sentence_patterns.md)
 
 例句：
 - 「寝てから食べる」（睡了之后再吃）
 - 「春になると桜が咲く」（一到春天樱花就开）
 
-## と的条件用法
-[详细说明](conditional_to.md)
-
-## 基本说明
-
-## 条件句と和てしまう的用法
-[详细说明](conditional_to_and_te_shimau.md)
-
-## い形容词的变化与用法
+### い形容词的变化与用法
 [详细说明](i-adjective.md)
 
 ## 基本说明
 
-## マークシート (Mark Sheet) 相关语法点
+### マークシート (Mark Sheet) 相关语法点
 [详细说明](marksheet.md)
 
-## なのに
-[详细说明](nanoni.md)
+### のような
+[详细说明](noyouna.md)
 
-## ので 的用法
-[详细说明](node.md)
+### しかない
+[详细说明](shikanai.md)
+
+### たまま
+[详细说明](tamama.md)
+
+### て形 + 時間 + 経過
+[详细说明](te_form_duration.md)
+
+### てある
+[详细说明](tearu.md)
+
+### よろしければ
+[详细说明](yoroshikereba.md)
+
+## 转折表达
+
+### と的条件用法
+[详细说明](conditional_to.md)
 
 ## 基本说明
 
-## のに转折助词
+### 条件句と和てしまう的用法
+[详细说明](conditional_to_and_te_shimau.md)
+
+### なのに
+[详细说明](nanoni.md)
+
+### のに转折助词
 [详细说明](noni.md)
 
 ## 基本说明
@@ -43,26 +60,17 @@
 - 「今8時なのに、8時3分になっている」（明明现在是8点，却已经变成8点3分了）
 - 「学生なのに、勉強しない」（明明是学生，却不学习）
 
-## のような
-[详细说明](noyouna.md)
+## 原因和结果
 
-## しかない
-[详细说明](shikanai.md)
-
-## たまま
-[详细说明](tamama.md)
-
-## て形 + 時間 + 経過
-[详细说明](te_form_duration.md)
-
-## ～てしまう的用法
-[详细说明](te_shimau.md)
+### ので 的用法
+[详细说明](node.md)
 
 ## 基本说明
 
-## てある
-[详细说明](tearu.md)
+## 状态变化
 
-## よろしければ
-[详细说明](yoroshikereba.md)
+### ～てしまう的用法
+[详细说明](te_shimau.md)
+
+## 基本说明
 
