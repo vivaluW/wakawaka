@@ -5,12 +5,8 @@
 ### Basic Grammar Points
 [详细说明](basic_grammar_points.md)
 
-### 复杂句子结构
-[详细说明](complex_sentence_patterns.md)
-
-例句：
-- 「寝てから食べる」（睡了之后再吃）
-- 「春になると桜が咲く」（一到春天樱花就开）
+### 条件句と和てしまう的用法
+[详细说明](conditional_to_and_te_shimau.md)
 
 ### い形容词的变化与用法
 [详细说明](i-adjective.md)
@@ -19,6 +15,9 @@
 
 ### マークシート (Mark Sheet) 相关语法点
 [详细说明](marksheet.md)
+
+### なのに
+[详细说明](nanoni.md)
 
 ### のような
 [详细说明](noyouna.md)
@@ -40,16 +39,17 @@
 
 ## 转折表达
 
+### 复杂句子结构
+[详细说明](complex_sentence_patterns.md)
+
+例句：
+- 「寝てから食べる」（睡了之后再吃）
+- 「春になると桜が咲く」（一到春天樱花就开）
+
 ### と的条件用法
 [详细说明](conditional_to.md)
 
 ## 基本说明
-
-### 条件句と和てしまう的用法
-[详细说明](conditional_to_and_te_shimau.md)
-
-### なのに
-[详细说明](nanoni.md)
 
 ### のに转折助词
 [详细说明](noni.md)
