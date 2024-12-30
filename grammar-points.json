@@ -1,36 +1,4 @@
 {
-  "basic_grammar_points": {
-    "patterns": [
-      {
-        "japanese": "私はお酒が弱い",
-        "chinese": "我酒量差",
-        "points": [
-          "basic_grammar_points"
-        ]
-      },
-      {
-        "japanese": "お酒が弱い",
-        "chinese": "酒量差",
-        "points": [
-          "basic_grammar_points"
-        ]
-      },
-      {
-        "japanese": "すぐ顔が赤くなってしまう",
-        "chinese": "很快就脸红了",
-        "points": [
-          "basic_grammar_points"
-        ]
-      },
-      {
-        "japanese": "赤くなってしまう",
-        "chinese": "变红了",
-        "points": [
-          "basic_grammar_points"
-        ]
-      }
-    ]
-  },
   "complex_sentence_patterns": {
     "patterns": [
       {
