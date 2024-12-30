@@ -17,5 +17,6 @@
 - [しかない](shikanai.md) - 表示「只有...」的限定表达
 - [たまま](tamama.md) - 表示动作或状态保持不变，「保持某个状态」
 - [と的条件用法](conditional_to.md) - 
+- [よろしければ](yoroshikereba.md) - 表示礼貌性的假定条件，相当于「もしよかったら」的礼貌用语。
 - [复杂句子结构](complex_sentence_patterns.md) - 
 
