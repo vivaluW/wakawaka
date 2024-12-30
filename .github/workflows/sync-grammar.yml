@@ -2,37 +2,28 @@ name: Sync Grammar Points
 
 on:
   push:
-    branches: [ main ]
     paths:
       - 'grammar/**'
-      - 'public/**'
-  workflow_dispatch:
 
 jobs:
-  sync:
+  sync-index:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          node-version: '20'
-      
-      - name: Create Output Directory
-        run: |
-          mkdir -p _site
-          cp -r public/* _site/
+          python-version: '3.x'
           
-      - name: Generate Grammar Points JSON
+      - name: Update Index
         run: |
-          node scripts/generate-grammar.js
-          mv grammar-points.json _site/
+          python .github/scripts/update_index.py
           
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add index.md
+          git commit -m "Auto update index" || echo "No changes to commit"
+          git push
