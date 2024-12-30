@@ -25,12 +25,23 @@ jobs:
       - name: Prepare Directory
         run: |
           mkdir -p _site
-          cp -r public/* _site/
+          cp -r public/* _site/ || true
       
       - name: Generate Grammar Data
         run: |
           node scripts/generate-grammar.js
+          ls -la _site/
+          cat _site/grammar-points.json
+      
+      - name: Update Index
+        run: |
           node scripts/update-index.js
+          cp grammar/index.md _site/
+      
+      - name: Debug Directory
+        run: |
+          echo "Contents of _site directory:"
+          ls -la _site/
       
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
