@@ -12,6 +12,15 @@ const sections = {
   '状态变化': [],
 };
 
+const categoryMap = {
+  'basic_grammar_points': '基本语法',
+  'noni': '转折表达',
+  'te_shimau': '状态变化',
+  'node': '原因和结果',
+  'conditional_to': '转折表达',
+  'complex_sentence_patterns': '转折表达'
+};
+
 grammarFiles.forEach(file => {
   const content = fs.readFileSync(path.join(grammarDir, file), 'utf8');
   const grammarName = file.replace('.md', '');
@@ -29,16 +38,8 @@ grammarFiles.forEach(file => {
     }
   });
 
-  // 根据语法点特点分类
-  if (file.includes('node') || file.includes('kara')) {
-    sections['原因和结果'].push({ title, file, description, examples });
-  } else if (file.includes('noni') || file.includes('to')) {
-    sections['转折表达'].push({ title, file, description, examples });
-  } else if (file.includes('naru') || file.includes('shimau')) {
-    sections['状态变化'].push({ title, file, description, examples });
-  } else {
-    sections['基本语法'].push({ title, file, description, examples });
-  }
+  const category = categoryMap[grammarName] || '基本语法';
+  sections[category].push({ title, file, description, examples });
 });
 
 let indexContent = '# 日语语法点索引\n\n';
