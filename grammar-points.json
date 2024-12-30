@@ -1,28 +1,54 @@
 {
   "structure": {
-    "基本语法": [
-      "- [基本语法点](basic_grammar_points.md)",
-      "- [い形容词](i-adjective.md)"
+    "基本语法": [],
+    "转折表达": [
+      {
+        "name": "complex_sentence_patterns",
+        "title": "复杂句子结构",
+        "examples": [
+          {
+            "japanese": "寝てから食べる",
+            "chinese": "睡了之后再吃",
+            "points": [
+              "complex_sentence_patterns"
+            ],
+            "category": "转折表达"
+          },
+          {
+            "japanese": "春になると桜が咲く",
+            "chinese": "一到春天樱花就开",
+            "points": [
+              "complex_sentence_patterns"
+            ],
+            "category": "转折表达"
+          }
+        ]
+      },
+      {
+        "name": "noni",
+        "title": "のに转折助词",
+        "examples": [
+          {
+            "japanese": "今8時なのに、8時3分になっている",
+            "chinese": "明明现在是8点，却已经变成8点3分了",
+            "points": [
+              "noni"
+            ],
+            "category": "转折表达"
+          },
+          {
+            "japanese": "学生なのに、勉強しない",
+            "chinese": "明明是学生，却不学习",
+            "points": [
+              "noni"
+            ],
+            "category": "转折表达"
+          }
+        ]
+      }
     ],
-    "复杂句型": [
-      "- [复杂句型模式](complex_sentence_patterns.md)",
-      "- [条件「と」](conditional_to.md)",
-      "- [条件「と」和「てしまう」](conditional_to_and_te_shimau.md)",
-      "- [てしまう](te_shimau.md)",
-      "- [の/んです](node.md)"
-    ],
-    "状态表达": [
-      "- [たまま](tamama.md) - 表示状态的持续"
-    ],
-    "限定表达": [
-      "- [しかない](shikanai.md) - 表示「只有...」"
-    ],
-    "比喻表达": [
-      "- [のような](noyouna.md) - 表示「像...一样」"
-    ],
-    "转折语气": [
-      "- [なのに](nanoni.md) - 表示带有惊讶/不满的转折"
-    ]
+    "原因和结果": [],
+    "状态变化": []
   },
   "points": {
     "complex_sentence_patterns": {
@@ -33,7 +59,7 @@
           "points": [
             "complex_sentence_patterns"
           ],
-          "category": "复杂句型"
+          "category": "转折表达"
         },
         {
           "japanese": "春になると桜が咲く",
@@ -41,10 +67,11 @@
           "points": [
             "complex_sentence_patterns"
           ],
-          "category": "复杂句型"
+          "category": "转折表达"
         }
       ],
-      "category": "复杂句型"
+      "category": "转折表达",
+      "title": "复杂句子结构"
     },
     "noni": {
       "patterns": [
@@ -54,7 +81,7 @@
           "points": [
             "noni"
           ],
-          "category": "转折语气"
+          "category": "转折表达"
         },
         {
           "japanese": "学生なのに、勉強しない",
@@ -62,7 +89,7 @@
           "points": [
             "noni"
           ],
-          "category": "转折语气"
+          "category": "转折表达"
         },
         {
           "japanese": "寒いのに、アイスを食べている",
@@ -70,10 +97,11 @@
           "points": [
             "noni"
           ],
-          "category": "转折语气"
+          "category": "转折表达"
         }
       ],
-      "category": "转折语气"
+      "category": "转折表达",
+      "title": "のに转折助词"
     }
   }
 }
