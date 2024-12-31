@@ -1,29 +1,6 @@
 {
   "structure": {
-    "基本语法": [
-      {
-        "name": "ga_conjunction",
-        "title": "が转折助词",
-        "examples": [
-          {
-            "japanese": "用があったが、都合がついて、飲み会に行くことができた",
-            "chinese": "虽然有事，但是安排好了，能去聚会了",
-            "points": [
-              "ga_conjunction"
-            ],
-            "category": "基本语法"
-          },
-          {
-            "japanese": "雨が降っていたが、働きに行った",
-            "chinese": "虽然下雨，但还是去上班了",
-            "points": [
-              "ga_conjunction"
-            ],
-            "category": "基本语法"
-          }
-        ]
-      }
-    ],
+    "基本语法": [],
     "转折表达": [
       {
         "name": "complex_sentence_patterns",
@@ -42,6 +19,28 @@
             "chinese": "一到春天樱花就开",
             "points": [
               "complex_sentence_patterns"
+            ],
+            "category": "转折表达"
+          }
+        ]
+      },
+      {
+        "name": "ga_conjunction",
+        "title": "が转折助词",
+        "examples": [
+          {
+            "japanese": "用があったが、都合がついて、飲み会に行くことができた",
+            "chinese": "虽然有事，但是安排好了，能去聚会了",
+            "points": [
+              "ga_conjunction"
+            ],
+            "category": "转折表达"
+          },
+          {
+            "japanese": "雨が降っていたが、働きに行った",
+            "chinese": "虽然下雨，但还是去上班了",
+            "points": [
+              "ga_conjunction"
             ],
             "category": "转折表达"
           }
@@ -104,7 +103,7 @@
           "points": [
             "ga_conjunction"
           ],
-          "category": "基本语法"
+          "category": "转折表达"
         },
         {
           "japanese": "雨が降っていたが、働きに行った",
@@ -112,10 +111,10 @@
           "points": [
             "ga_conjunction"
           ],
-          "category": "基本语法"
+          "category": "转折表达"
         }
       ],
-      "category": "基本语法",
+      "category": "转折表达",
       "title": "が转折助词"
     },
     "noni": {
