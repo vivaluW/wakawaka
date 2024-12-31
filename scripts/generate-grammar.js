@@ -15,7 +15,8 @@ const categoryMap = {
   'te_shimau': '状态变化',
   'node': '原因和结果',
   'conditional_to': '转折表达',
-  'complex_sentence_patterns': '转折表达'
+  'complex_sentence_patterns': '转折表达',
+  'ga_conjunction': '转折表达'
 };
 
 // 读取所有语法文件
@@ -79,3 +80,4 @@ fs.writeFileSync(outputPath, JSON.stringify({
 }, null, 2));
 
 console.log('Grammar points JSON has been generated successfully!');
+console.log('Generated points:', Object.keys(grammarPoints).join(', '));
