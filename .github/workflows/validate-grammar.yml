@@ -1,0 +1,99 @@
+name: Validate Grammar Point Format
+
+on:
+  pull_request:
+    paths:
+      - 'grammar/*.md'
+  push:
+    branches:
+      - main
+    paths:
+      - 'grammar/*.md'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Validate and Fix Grammar Files
+        run: |
+          node <<'EOF'
+          const fs = require('fs');
+          const path = require('path');
+
+          // 读取模板文件
+          const template = fs.readFileSync('docs/templates/grammar_template.md', 'utf8');
+          const requiredSections = [
+            '# ',
+            '## 基本意义',
+            '## 接续方式',
+            '## 例句',
+          ];
+
+          // 获取所有更改的文件
+          const grammarDir = 'grammar';
+          const files = fs.readdirSync(grammarDir)
+            .filter(file => file.endsWith('.md') && 
+                    !['index.md', 'marksheet.md', 'basic_grammar_points.md'].includes(file));
+
+          let hasErrors = false;
+          let fixedFiles = [];
+
+          for (const file of files) {
+            const filePath = path.join(grammarDir, file);
+            let content = fs.readFileSync(filePath, 'utf8');
+
+            // 检查必需章节
+            const missingRequiredSections = requiredSections.filter(section => 
+              !content.includes(section));
+
+            if (missingRequiredSections.length > 0) {
+              console.log(`File ${file} is missing required sections:`);
+              missingRequiredSections.forEach(section => 
+                console.log(`  - ${section.trim()}`));
+
+              // 如果是新文件（内容基本为空），使用模板创建
+              if (content.trim().length < 50) {
+                content = template;
+                fs.writeFileSync(filePath, content);
+                fixedFiles.push(file);
+                console.log(`Created template for ${file}`);
+              } else {
+                hasErrors = true;
+              }
+            }
+
+            // 检查文件命名格式
+            if (!/^[a-z0-9_-]+\.md$/.test(file)) {
+              console.log(`File ${file} has invalid naming format. ` +
+                        'Use only lowercase letters, numbers, underscores and hyphens.');
+              hasErrors = true;
+            }
+          }
+
+          // 如果有修复的文件，创建提交
+          if (fixedFiles.length > 0) {
+            const exec = require('child_process').execSync;
+            exec('git config user.name "GitHub Actions Bot"');
+            exec('git config user.email "<>"');
+            exec('git add ' + fixedFiles.map(f => path.join(grammarDir, f)).join(' '));
+            exec('git commit -m "Apply grammar template to new files: ' + 
+                 fixedFiles.join(', ') + '"');
+            exec('git push');
+          }
+
+          if (hasErrors) {
+            process.exit(1);
+          }
+          EOF
