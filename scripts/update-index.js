@@ -2,8 +2,6 @@ const fs = require('fs');
 const path = require('path');
 
 const grammarDir = path.join(__dirname, '../grammar');
-
-// 读取所有语法文件
 const grammarFiles = fs.readdirSync(grammarDir)
   .filter(file => file.endsWith('.md') && !file.includes('index') && !file.includes('README'));
 
@@ -32,10 +30,12 @@ grammarFiles.forEach(file => {
   const grammarName = file.replace('.md', '');
   const category = categoryMap[grammarName] || '基本语法';
   
+  // 提取标题和说明
   const lines = content.split('\n');
   const title = lines.find(line => line.startsWith('# '))?.replace('# ', '');
   const description = lines.find(line => line.includes('基本说明'))?.split('\n')[0];
   
+  // 提取例句
   const examples = [];
   lines.forEach(line => {
     const jpMatch = line.match(/「([^」]+)」/);
@@ -52,7 +52,7 @@ grammarFiles.forEach(file => {
     sections[category].push({
       title,
       file,
-      description,
+      description: description?.replace('基本说明', '').trim(),
       examples
     });
   }
@@ -61,6 +61,7 @@ grammarFiles.forEach(file => {
 // 生成索引内容
 let indexContent = '# 日语语法点索引\n\n';
 
+// 只显示有内容的分类
 Object.entries(sections).forEach(([section, points]) => {
   if (points.length > 0) {
     indexContent += `## ${section}\n\n`;
@@ -84,5 +85,3 @@ Object.entries(sections).forEach(([section, points]) => {
 // 写入索引文件
 fs.writeFileSync(path.join(grammarDir, 'index.md'), indexContent);
 console.log('Index has been updated successfully!');
-console.log('Categories:', Object.keys(sections).join(', '));
-console.log('Files processed:', grammarFiles.join(', '));
