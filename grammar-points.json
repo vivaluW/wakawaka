@@ -112,6 +112,14 @@
             "ga_conjunction"
           ],
           "category": "转折表达"
+        },
+        {
+          "japanese": "寒かったが、外で遊んだ",
+          "chinese": "虽然很冷，但还是在外面玩了",
+          "points": [
+            "ga_conjunction"
+          ],
+          "category": "转折表达"
         }
       ],
       "category": "转折表达",
