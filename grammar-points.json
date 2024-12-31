@@ -120,6 +120,14 @@
             "ga_conjunction"
           ],
           "category": "转折表达"
+        },
+        {
+          "japanese": "学生が多かったが、全員座ることができた",
+          "chinese": "虽然学生很多，但是所有人都能坐下",
+          "points": [
+            "ga_conjunction"
+          ],
+          "category": "转折表达"
         }
       ],
       "category": "转折表达",
