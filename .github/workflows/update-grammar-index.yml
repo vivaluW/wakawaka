@@ -1,0 +1,78 @@
+name: Update Grammar Index
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'grammar/**'
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: main
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Create grammar-points.json
+        run: |
+          node <<'EOF'
+          const fs = require('fs');
+          const path = require('path');
+
+          // Read all .md files from grammar directory
+          const grammarDir = 'grammar';
+          const files = fs.readdirSync(grammarDir)
+            .filter(file => file.endsWith('.md'));
+
+          const grammarPoints = files.map(file => {
+            const content = fs.readFileSync(path.join(grammarDir, file), 'utf8');
+            const titleMatch = content.match(/^# (.*)/m);
+            const descMatch = content.match(/^## 基本意义\n\n?(.*)/m);
+            
+            const id = file.replace('.md', '');
+            const title = titleMatch ? titleMatch[1] : id;
+            const description = descMatch ? descMatch[1] : '';
+
+            return {
+              id,
+              title,
+              description,
+              path: `/grammar/${id}`
+            };
+          });
+
+          const json = {
+            grammar_points: grammarPoints
+          };
+
+          // Create json string
+          const jsonContent = JSON.stringify(json, null, 2);
+
+          // Temporary store the content
+          fs.writeFileSync('grammar-points.json', jsonContent);
+          EOF
+
+      - name: Checkout gh-pages
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+          clean: false
+
+      - name: Update grammar-points.json
+        run: |
+          mv grammar-points.json docs/
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git add docs/grammar-points.json
+          git commit -m "Update grammar-points.json" || echo "No changes to commit"
+          git push origin gh-pages
