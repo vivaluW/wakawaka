@@ -13,6 +13,9 @@
 
 ## 基本说明
 
+### のかもしれない (Kamoshirenai)
+[详细说明](kamoshirenai.md)
+
 ### マークシート (Mark Sheet) 相关语法点
 [详细说明](marksheet.md)
 
