@@ -16,7 +16,6 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          ref: main
       
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -39,12 +38,8 @@ jobs:
 
           const grammarPoints = files.map(file => {
             const content = fs.readFileSync(path.join(grammarDir, file), 'utf8');
-            
-            // Extract title and description
             const titleMatch = content.match(/^# ([^\n]+)/m);
-            const descMatch = content.match(/^## 基本意义\s*([^\n]+)/m) || 
-                            content.match(/^## 意义\s*([^\n]+)/m) ||
-                            content.match(/^## 含义\s*([^\n]+)/m);
+            const descMatch = content.match(/^## 基本意义\s*([^\n]+)/m);
             
             const id = file.replace('.md', '');
             const title = titleMatch ? titleMatch[1].trim() : id;
@@ -58,34 +53,34 @@ jobs:
             };
           });
 
-          // Sort grammar points by ID
-          grammarPoints.sort((a, b) => a.id.localeCompare(b.id));
-
           const json = {
-            grammar_points: grammarPoints,
-            last_updated: new Date().toISOString(),
-            total_count: grammarPoints.length
+            grammar_points: grammarPoints.sort((a, b) => a.id.localeCompare(b.id)),
+            last_updated: new Date().toISOString()
           };
 
-          // Create json string with proper formatting
-          const jsonContent = JSON.stringify(json, null, 2);
-
-          // Store the content
-          fs.writeFileSync('grammar-points.json', jsonContent);
+          fs.writeFileSync('grammar-points.json', JSON.stringify(json, null, 2));
           EOF
 
-      - name: Checkout gh-pages
-        uses: actions/checkout@v3
-        with:
-          ref: gh-pages
-          clean: false
-
-      - name: Update grammar-points.json
+      - name: Deploy to GitHub Pages
         run: |
+          git config --global user.name 'GitHub Actions Bot'
+          git config --global user.email '<>'
+          
+          # Save main branch grammar-points.json
+          cp grammar-points.json /tmp/grammar-points.json
+          
+          # Switch to gh-pages branch
+          git fetch origin gh-pages
+          git checkout gh-pages
+          
+          # Ensure docs directory exists
           mkdir -p docs
-          mv grammar-points.json docs/
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
+          
+          # Copy the file and commit
+          cp /tmp/grammar-points.json docs/
           git add docs/grammar-points.json
-          git commit -m "Update grammar-points.json with all grammar points" || echo "No changes to commit"
+          git commit -m "Update grammar-points.json" || echo "No changes to commit"
           git push origin gh-pages
+          
+          # Switch back to main branch
+          git checkout -
