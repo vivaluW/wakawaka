@@ -1,24 +1,85 @@
 # 日语语法点索引
 
 ## 基本语法
-- [基本语法点](basic_grammar_points.md)
-- [い形容词](i-adjective.md)
 
-## 复杂句型
-- [复杂句型模式](complex_sentence_patterns.md)
-- [条件「と」](conditional_to.md)
-- [条件「と」和「てしまう」](conditional_to_and_te_shimau.md)
-- [てしまう](te_shimau.md)
-- [の/んです](node.md)
+### Basic Grammar Points
+[详细说明](basic_grammar_points.md)
 
-## 状态表达
-- [たまま](tamama.md) - 表示状态的持续
+### 条件句と和てしまう的用法
+[详细说明](conditional_to_and_te_shimau.md)
 
-## 限定表达
-- [しかない](shikanai.md) - 表示「只有...」
+### い形容词的变化与用法
+[详细说明](i-adjective.md)
 
-## 比喻表达
-- [のような](noyouna.md) - 表示「像...一样」
+## 基本说明
 
-## 转折语气
-- [なのに](nanoni.md) - 表示带有惊讶/不满的转折
+### マークシート (Mark Sheet) 相关语法点
+[详细说明](marksheet.md)
+
+### なのに
+[详细说明](nanoni.md)
+
+### のような
+[详细说明](noyouna.md)
+
+### しかない
+[详细说明](shikanai.md)
+
+### たまま
+[详细说明](tamama.md)
+
+### て形 + 時間 + 経過
+[详细说明](te_form_duration.md)
+
+### てある
+[详细说明](tearu.md)
+
+### よろしければ
+[详细说明](yoroshikereba.md)
+
+## 转折表达
+
+### 复杂句子结构
+[详细说明](complex_sentence_patterns.md)
+
+例句：
+- 「寝てから食べる」（睡了之后再吃）
+- 「春になると桜が咲く」（一到春天樱花就开）
+
+### と的条件用法
+[详细说明](conditional_to.md)
+
+## 基本说明
+
+### が转折助词
+[详细说明](ga_conjunction.md)
+
+## 基本说明
+
+例句：
+- 「用があったが、都合がついて、飲み会に行くことができた」（虽然有事，但是安排好了，能去聚会了）
+- 「雨が降っていたが、働きに行った」（虽然下雨，但还是去上班了）
+
+### のに转折助词
+[详细说明](noni.md)
+
+## 基本说明
+
+例句：
+- 「今8時なのに、8時3分になっている」（明明现在是8点，却已经变成8点3分了）
+- 「学生なのに、勉強しない」（明明是学生，却不学习）
+
+## 原因和结果
+
+### ので 的用法
+[详细说明](node.md)
+
+## 基本说明
+
+## 状态变化
+
+### ～てしまう的用法
+[详细说明](te_shimau.md)
+
+## 基本说明
+
