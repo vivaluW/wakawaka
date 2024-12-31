@@ -19,6 +19,9 @@
 ### マークシート (Mark Sheet) 相关语法点
 [详细说明](marksheet.md)
 
+### なくなる（なくなる）
+[详细说明](nakunaru.md)
+
 ### なのに
 [详细说明](nanoni.md)
 
@@ -33,6 +36,9 @@
 
 ### て形 + 時間 + 経過
 [详细说明](te_form_duration.md)
+
+### てもらう（てもらう）
+[详细说明](te_morau.md)
 
 ### てある
 [详细说明](tearu.md)
