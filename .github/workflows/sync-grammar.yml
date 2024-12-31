@@ -27,19 +27,35 @@ jobs:
           mkdir -p _site
           cp -r public/* _site/
       
-      - name: Update Grammar Files
+      - name: Update Index and Generate JSON
         run: |
+          # First update the index
           node scripts/update-index.js
+          # Then generate the JSON file
+          node scripts/generate-grammar.js
+          # Copy the generated JSON to site directory
+          cat _site/grammar-points.json
+          # Also commit the updated index back to main branch
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add grammar/index.md
-          git diff --quiet && git diff --staged --quiet || git commit -m "Update index.md"
-          git push
-      
-      - name: Generate Grammar Points JSON
+          git diff --quiet && git diff --staged --quiet || (
+            git commit -m "Update index.md [skip ci]" && 
+            git push
+          )
+          
+      - name: Copy Grammar Files
         run: |
-          node scripts/generate-grammar.js
+          # Copy grammar files for reference
+          mkdir -p _site/grammar
+          cp grammar/*.md _site/grammar/
+          
+      - name: Debug Directory
+        run: |
+          echo "Contents of _site directory:"
           ls -la _site/
+          echo "Contents of _site/grammar directory:"
+          ls -la _site/grammar/
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
