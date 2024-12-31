@@ -32,16 +32,23 @@ jobs:
           // Read all .md files from grammar directory
           const grammarDir = 'grammar';
           const files = fs.readdirSync(grammarDir)
-            .filter(file => file.endsWith('.md'));
+            .filter(file => 
+              file.endsWith('.md') && 
+              !['index.md', 'marksheet.md', 'basic_grammar_points.md'].includes(file)
+            );
 
           const grammarPoints = files.map(file => {
             const content = fs.readFileSync(path.join(grammarDir, file), 'utf8');
-            const titleMatch = content.match(/^# (.*)/m);
-            const descMatch = content.match(/^## 基本意义\n\n?(.*)/m);
+            
+            // Extract title and description
+            const titleMatch = content.match(/^# ([^\n]+)/m);
+            const descMatch = content.match(/^## 基本意义\s*([^\n]+)/m) || 
+                            content.match(/^## 意义\s*([^\n]+)/m) ||
+                            content.match(/^## 含义\s*([^\n]+)/m);
             
             const id = file.replace('.md', '');
-            const title = titleMatch ? titleMatch[1] : id;
-            const description = descMatch ? descMatch[1] : '';
+            const title = titleMatch ? titleMatch[1].trim() : id;
+            const description = descMatch ? descMatch[1].trim() : '';
 
             return {
               id,
@@ -51,14 +58,19 @@ jobs:
             };
           });
 
+          // Sort grammar points by ID
+          grammarPoints.sort((a, b) => a.id.localeCompare(b.id));
+
           const json = {
-            grammar_points: grammarPoints
+            grammar_points: grammarPoints,
+            last_updated: new Date().toISOString(),
+            total_count: grammarPoints.length
           };
 
-          // Create json string
+          // Create json string with proper formatting
           const jsonContent = JSON.stringify(json, null, 2);
 
-          // Temporary store the content
+          // Store the content
           fs.writeFileSync('grammar-points.json', jsonContent);
           EOF
 
@@ -70,9 +82,10 @@ jobs:
 
       - name: Update grammar-points.json
         run: |
+          mkdir -p docs
           mv grammar-points.json docs/
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           git add docs/grammar-points.json
-          git commit -m "Update grammar-points.json" || echo "No changes to commit"
+          git commit -m "Update grammar-points.json with all grammar points" || echo "No changes to commit"
           git push origin gh-pages
