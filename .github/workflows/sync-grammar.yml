@@ -22,27 +22,25 @@ jobs:
         with:
           node-version: '20'
       
-      - name: Prepare Directory
+      - name: Create Output Directory
         run: |
           mkdir -p _site
-          cp -r public/* _site/ || true
+          cp -r public/* _site/
       
-      - name: Generate Grammar Data
+      - name: Update Grammar Files
+        run: |
+          node scripts/update-index.js
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add grammar/index.md
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update index.md"
+          git push
+      
+      - name: Generate Grammar Points JSON
         run: |
           node scripts/generate-grammar.js
           ls -la _site/
-          cat _site/grammar-points.json
-      
-      - name: Update Index
-        run: |
-          node scripts/update-index.js
-          cp grammar/index.md _site/
-      
-      - name: Debug Directory
-        run: |
-          echo "Contents of _site directory:"
-          ls -la _site/
-      
+          
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
