@@ -19,6 +19,9 @@
 ### マークシート (Mark Sheet) 相关语法点
 [详细说明](marksheet.md)
 
+### なければ・なくては + ならない/いけない
+[详细说明](nakereba_naranai.md)
+
 ### なくなる（なくなる）
 [详细说明](nakunaru.md)
 
