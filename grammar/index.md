@@ -52,6 +52,12 @@
 ### よろしければ
 [详细说明](yoroshikereba.md)
 
+### てほしい (Te hoshii)
+[详细说明](te_hoshii.md)
+
+### ことができる (Koto dekiru)
+[详细说明](koto_dekiru.md)
+
 ## 转折表达
 
 ### 复杂句子结构
@@ -97,4 +103,3 @@
 [详细说明](te_shimau.md)
 
 ##
-
