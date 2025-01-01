@@ -16,6 +16,9 @@
 ### のかもしれない (Kamoshirenai)
 [详细说明](kamoshirenai.md)
 
+### ことができる (Koto dekiru)
+[详细说明](koto_dekiru.md)
+
 ### マークシート (Mark Sheet) 相关语法点
 [详细说明](marksheet.md)
 
@@ -39,6 +42,9 @@
 
 ### て形 + 時間 + 経過
 [详细说明](te_form_duration.md)
+
+### ～てほしい (Te hoshii)
+[详细说明](te_hoshii.md)
 
 ### てもらう（てもらう）
 [详细说明](te_morau.md)
