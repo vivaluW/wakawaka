@@ -2,6 +2,9 @@
 
 ## 基本语法
 
+### 语法点名称 / Grammar Point Name
+[详细说明](TEMPLATE.md)
+
 ### Basic Grammar Points
 [详细说明](basic_grammar_points.md)
 
