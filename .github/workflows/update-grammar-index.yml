@@ -10,75 +10,25 @@ on:
   workflow_dispatch:
 
 jobs:
-  debug:
+  validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Check Runner Environment
-        run: |
-          echo "Current directory: $PWD"
-          echo "Directory contents:"
-          ls -la
-          echo "\nEnvironment variables:"
-          env
-
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
-
-      - name: Check Repository Structure
-        run: |
-          echo "Repository root contents:"
-          ls -la
-          echo "\ngrammar directory:"
-          ls -la grammar/ || echo "grammar directory not found"
-          echo "\nscripts directory:"
-          ls -la scripts/ || echo "scripts directory not found"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
-      - name: Debug Node Setup
-        run: |
-          echo "Node version: $(node --version)"
-          echo "NPM version: $(npm --version)"
-          echo "Working directory: $PWD"
+      - name: Install dependencies
+        run: npm install
 
-      - name: Install Dependencies
-        run: |
-          if [ -f "package.json" ]; then
-            echo "Found package.json. Contents:"
-            cat package.json
-            npm install
-          else
-            echo "Error: package.json not found"
-            exit 1
-          fi
+      - name: Run validation
+        run: node scripts/validate.js
 
-      - name: List Node Modules
+      - name: List validated files
+        if: success()
         run: |
-          if [ -d "node_modules" ]; then
-            echo "Installed packages:"
-            npm list --depth=0
-          else
-            echo "Error: node_modules not found"
-            exit 1
-          fi
-
-      - name: Run Index Generator
-        run: |
-          if [ -f "scripts/update_grammar_index.js" ]; then
-            echo "Running index generator..."
-            node scripts/update_grammar_index.js
-          else
-            echo "Error: update_grammar_index.js not found"
-            exit 1
-          fi
-
-      - name: Check Generated Files
-        run: |
-          echo "Checking generated files..."
-          [ -f "grammar/index.md" ] && echo "index.md exists" || echo "index.md not found"
-          [ -f "docs/grammar-points.json" ] && echo "grammar-points.json exists" || echo "grammar-points.json not found"
+          echo "Successfully validated files:"
+          find grammar -name "*.md" -type f
