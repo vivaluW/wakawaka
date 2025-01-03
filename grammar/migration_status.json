@@ -1,8 +1,8 @@
 {
   "migration_status": {
-    "completed_batches": [],
-    "in_progress": "expressions",
-    "pending": ["conjunctions", "forms", "honorifics"],
+    "completed_batches": ["expressions"],
+    "in_progress": "conjunctions",
+    "pending": ["forms", "honorifics"],
     "file_status": {
       "particles": {
         "completed": ["ga_conjunction.md"],
@@ -15,11 +15,10 @@
           "te_shimau.md",
           "tearu.md",
           "to_iu_kanji.md",
-          "kamoshirenai.md"
-        ],
-        "pending": [
+          "kamoshirenai.md",
           "nakereba_naranai.md"
-        ]
+        ],
+        "pending": []
       },
       "conjunctions": {
         "completed": [],
@@ -47,25 +46,25 @@
     },
     "last_updated": "2024-01-03",
     "next_steps": [
-      "Complete expressions category migration",
+      "Complete conjunctions category migration",
       "Update index.md",
       "Generate new JSON structure"
     ],
     "migration_metrics": {
       "total_files": 16,
-      "completed_files": 7,
-      "completion_percentage": 43.75
+      "completed_files": 8,
+      "completion_percentage": 50
     }
   },
   "current_operation": {
-    "file": "nakereba_naranai.md",
+    "file": "conditional_to.md",
     "status": "pending",
     "retry_count": 0,
-    "last_attempt": "2024-01-03T13:00:00Z"
+    "last_attempt": "2024-01-03T13:30:00Z"
   },
   "batch_definitions": {
     "size": 1,
-    "current_batch": 7,
+    "current_batch": 8,
     "total_batches": 16
   }
 }
