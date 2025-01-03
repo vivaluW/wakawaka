@@ -1,89 +1,167 @@
 {
-  "grammar_points": [
-    {
-      "title": "Basic Grammar Points",
-      "description": "基本语法要点",
-      "link": "grammar/basic_grammar_points.md"
+  "structure": {
+    "基本语法": [],
+    "转折表达": [
+      {
+        "name": "complex_sentence_patterns",
+        "title": "复杂句子结构",
+        "examples": [
+          {
+            "japanese": "寝てから食べる",
+            "chinese": "睡了之后再吃",
+            "points": [
+              "complex_sentence_patterns"
+            ],
+            "category": "转折表达"
+          },
+          {
+            "japanese": "春になると桜が咲く",
+            "chinese": "一到春天樱花就开",
+            "points": [
+              "complex_sentence_patterns"
+            ],
+            "category": "转折表达"
+          }
+        ]
+      },
+      {
+        "name": "ga_conjunction",
+        "title": "が转折助词",
+        "examples": [
+          {
+            "japanese": "用があったが、都合がついて、飲み会に行くことができた",
+            "chinese": "虽然有事，但是安排好了，能去聚会了",
+            "points": [
+              "ga_conjunction"
+            ],
+            "category": "转折表达"
+          },
+          {
+            "japanese": "雨が降っていたが、働きに行った",
+            "chinese": "虽然下雨，但还是去上班了",
+            "points": [
+              "ga_conjunction"
+            ],
+            "category": "转折表达"
+          }
+        ]
+      },
+      {
+        "name": "noni",
+        "title": "のに转折助词",
+        "examples": [
+          {
+            "japanese": "今8時なのに、8時3分になっている",
+            "chinese": "明明现在是8点，却已经变成8点3分了",
+            "points": [
+              "noni"
+            ],
+            "category": "转折表达"
+          },
+          {
+            "japanese": "学生なのに、勉強しない",
+            "chinese": "明明是学生，却不学习",
+            "points": [
+              "noni"
+            ],
+            "category": "转折表达"
+          }
+        ]
+      }
+    ],
+    "原因和结果": [],
+    "状态变化": []
+  },
+  "points": {
+    "complex_sentence_patterns": {
+      "patterns": [
+        {
+          "japanese": "寝てから食べる",
+          "chinese": "睡了之后再吃",
+          "points": [
+            "complex_sentence_patterns"
+          ],
+          "category": "转折表达"
+        },
+        {
+          "japanese": "春になると桜が咲く",
+          "chinese": "一到春天樱花就开",
+          "points": [
+            "complex_sentence_patterns"
+          ],
+          "category": "转折表达"
+        }
+      ],
+      "category": "转折表达",
+      "title": "复杂句子结构"
     },
-    {
-      "title": "条件句と和てしまう的用法",
-      "description": "条件句和てしまう的用法",
-      "link": "grammar/conditional_to_and_te_shimau.md"
+    "ga_conjunction": {
+      "patterns": [
+        {
+          "japanese": "用があったが、都合がついて、飲み会に行くことができた",
+          "chinese": "虽然有事，但是安排好了，能去聚会了",
+          "points": [
+            "ga_conjunction"
+          ],
+          "category": "转折表达"
+        },
+        {
+          "japanese": "雨が降っていたが、働きに行った",
+          "chinese": "虽然下雨，但还是去上班了",
+          "points": [
+            "ga_conjunction"
+          ],
+          "category": "转折表达"
+        },
+        {
+          "japanese": "寒かったが、外で遊んだ",
+          "chinese": "虽然很冷，但还是在外面玩了",
+          "points": [
+            "ga_conjunction"
+          ],
+          "category": "转折表达"
+        },
+        {
+          "japanese": "学生が多かったが、全員座ることができた",
+          "chinese": "虽然学生很多，但是所有人都能坐下",
+          "points": [
+            "ga_conjunction"
+          ],
+          "category": "转折表达"
+        }
+      ],
+      "category": "转折表达",
+      "title": "が转折助词"
     },
-    {
-      "title": "い形容词的变化与用法",
-      "description": "い形容词的变化与用法说明",
-      "link": "grammar/i-adjective.md"
-    },
-    {
-      "title": "のかもしれない (Kamoshirenai)",
-      "description": "表示可能性的语法点",
-      "link": "grammar/kamoshirenai.md"
-    },
-    {
-      "title": "なければ・なくては + ならない/いけない",
-      "description": "表示必须的语法点",
-      "link": "grammar/nakereba_naranai.md"
-    },
-    {
-      "title": "なくなる",
-      "description": "表示变得没有的语法点",
-      "link": "grammar/nakunaru.md"
-    },
-    {
-      "title": "なのに",
-      "description": "表示转折的语法点",
-      "link": "grammar/nanoni.md"
-    },
-    {
-      "title": "のような",
-      "description": "表示比喻的语法点",
-      "link": "grammar/noyouna.md"
-    },
-    {
-      "title": "しかない",
-      "description": "表示只有...的语法点",
-      "link": "grammar/shikanai.md"
-    },
-    {
-      "title": "たまま",
-      "description": "表示保持状态的语法点",
-      "link": "grammar/tamama.md"
-    },
-    {
-      "title": "て形 + 時間 + 経過",
-      "description": "表示时间经过的语法点",
-      "link": "grammar/te_form_duration.md"
-    },
-    {
-      "title": "てもらう",
-      "description": "表示请求帮助的语法点",
-      "link": "grammar/te_morau.md"
-    },
-    {
-      "title": "てある",
-      "description": "表示准备状态的语法点",
-      "link": "grammar/tearu.md"
-    },
-    {
-      "title": "という感じ",
-      "description": "表示感觉的语法点",
-      "link": "grammar/to_iu_kanji.md"
-    },
-    {
-      "title": "よろしければ",
-      "description": "表示如果可以的话的语法点",
-      "link": "grammar/yoroshikereba.md"
-    },
-    {
-      "title": "てほしい (Te hoshii)",
-      "description": "表达「希望某人做某事」的愿望",
-      "link": "grammar/te_hoshii.md"
-    },
-    {
-      "title": "ことができる (Koto dekiru)",
-      "description": "表达「能够做某事」的可能性或能力",
-      "link": "grammar/koto_dekiru.md"
+    "noni": {
+      "patterns": [
+        {
+          "japanese": "今8時なのに、8時3分になっている",
+          "chinese": "明明现在是8点，却已经变成8点3分了",
+          "points": [
+            "noni"
+          ],
+          "category": "转折表达"
+        },
+        {
+          "japanese": "学生なのに、勉強しない",
+          "chinese": "明明是学生，却不学习",
+          "points": [
+            "noni"
+          ],
+          "category": "转折表达"
+        },
+        {
+          "japanese": "寒いのに、アイスを食べている",
+          "chinese": "明明很冷，却在吃冰淇淋",
+          "points": [
+            "noni"
+          ],
+          "category": "转折表达"
+        }
+      ],
+      "category": "转折表达",
+      "title": "のに转折助词"
     }
-  ]
+  }
 }
