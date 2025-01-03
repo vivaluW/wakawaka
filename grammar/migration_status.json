@@ -9,9 +9,13 @@
         "pending": ["wa_and_ga.md"]
       },
       "expressions": {
-        "completed": ["te_morau.md", "te_hoshii.md", "te_shimau.md"],
+        "completed": [
+          "te_morau.md", 
+          "te_hoshii.md", 
+          "te_shimau.md",
+          "tearu.md"
+        ],
         "pending": [
-          "tearu.md",
           "to_iu_kanji.md",
           "kamoshirenai.md",
           "nakereba_naranai.md"
@@ -49,19 +53,19 @@
     ],
     "migration_metrics": {
       "total_files": 16,
-      "completed_files": 4,
-      "completion_percentage": 25
+      "completed_files": 5,
+      "completion_percentage": 31.25
     }
   },
   "current_operation": {
-    "file": "tearu.md",
+    "file": "to_iu_kanji.md",
     "status": "pending",
     "retry_count": 0,
-    "last_attempt": "2024-01-03T11:00:00Z"
+    "last_attempt": "2024-01-03T11:30:00Z"
   },
   "batch_definitions": {
     "size": 1,
-    "current_batch": 4,
+    "current_batch": 5,
     "total_batches": 16
   }
 }
