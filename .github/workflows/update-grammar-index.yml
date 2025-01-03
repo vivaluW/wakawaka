@@ -13,30 +13,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
     - name: Setup Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: '18'
+        cache: 'npm'
 
     - name: Install dependencies
-      run: |
-        npm init -y
-        npm install
+      run: npm ci || npm install
+
+    - name: Create docs directory if not exists
+      run: mkdir -p docs
 
     - name: Run index generator
       run: node scripts/update_grammar_index.js
 
-    - name: Commit changes
+    - name: Configure git
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add grammar/index.md docs/grammar-points.json
-        git diff --staged --quiet || git commit -m "chore: update grammar index [skip ci]"
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
 
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}
+    - name: Commit changes if any
+      run: |
+        if [[ -n "$(git status --porcelain)" ]]; then
+          git add grammar/index.md docs/grammar-points.json
+          git commit -m "chore: update grammar index [skip ci]"
+          git push
+        fi
