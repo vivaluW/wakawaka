@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Japanese grammar learning platform",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "update-index": "node scripts/update_grammar_index.js"
   },
@@ -17,6 +18,7 @@
   ],
   "dependencies": {
     "fs-extra": "^11.2.0",
-    "glob": "^10.3.10"
+    "glob": "^10.3.10",
+    "marked": "^11.1.0"
   }
 }
