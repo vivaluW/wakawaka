@@ -1,0 +1,61 @@
+{
+  "categories": {
+    "particles": {
+      "name": "助词",
+      "description": "助词相关语法点",
+      "subcategories": [
+        "case_particles",
+        "binding_particles",
+        "sentence_ending_particles"
+      ]
+    },
+    "expressions": {
+      "name": "表达方式",
+      "description": "特定表达方式相关语法",
+      "subcategories": [
+        "explanatory",
+        "emotional",
+        "volitional"
+      ]
+    },
+    "forms": {
+      "name": "语法形式",
+      "description": "动词、形容词变化形式",
+      "subcategories": [
+        "verb_forms",
+        "adjective_forms",
+        "noun_forms"
+      ]
+    },
+    "conjunctions": {
+      "name": "接续词",
+      "description": "句子连接相关语法",
+      "subcategories": [
+        "subordinate",
+        "coordinate",
+        "temporal"
+      ]
+    },
+    "honorifics": {
+      "name": "敬语",
+      "description": "敬语相关语法",
+      "subcategories": [
+        "respectful",
+        "humble",
+        "polite"
+      ]
+    }
+  },
+  "levels": [
+    "N5",
+    "N4",
+    "N3",
+    "N2",
+    "N1"
+  ],
+  "difficulties": [
+    "初级",
+    "中级",
+    "高级"
+  ]
+}
