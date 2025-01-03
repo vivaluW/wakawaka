@@ -1,0 +1,139 @@
+{
+  "grammar_points": [
+    {
+      "title": "が助词（转折用法） / ga Conjunction",
+      "path": "particles/ga_conjunction.md",
+      "category": "particles",
+      "jlpt": "N4",
+      "difficulty": "初级",
+      "tags": [
+        "conjunction",
+        "intermediate",
+        "written_japanese"
+      ]
+    },
+    {
+      "title": "のかもしれない（推测） / no kamoshirenai",
+      "path": "expressions/kamoshirenai.md",
+      "category": "expressions",
+      "jlpt": "N3",
+      "difficulty": "中级",
+      "tags": [
+        "speculation",
+        "possibility",
+        "inference",
+        "polite"
+      ]
+    },
+    {
+      "title": "なければ・なくては + ならない/いけない（必要性） / nakereba naranai",
+      "path": "expressions/nakereba_naranai.md",
+      "category": "expressions",
+      "jlpt": "N4",
+      "difficulty": "初级",
+      "tags": [
+        "necessity",
+        "condition",
+        "obligation",
+        "must"
+      ]
+    },
+    {
+      "title": "てほしい（愿望） / te hoshii",
+      "path": "expressions/te_hoshii.md",
+      "category": "expressions",
+      "jlpt": "N4",
+      "difficulty": "初级",
+      "tags": [
+        "request",
+        "desire",
+        "te-form",
+        "wish"
+      ]
+    },
+    {
+      "title": "てもらう（请求帮助） / te morau",
+      "path": "expressions/te_morau.md",
+      "category": "expressions",
+      "jlpt": "N4",
+      "difficulty": "初级",
+      "tags": [
+        "request",
+        "help",
+        "te-form"
+      ]
+    },
+    {
+      "title": "てしまう（完了・后悔） / te shimau",
+      "path": "expressions/te_shimau.md",
+      "category": "expressions",
+      "jlpt": "N4",
+      "difficulty": "初级",
+      "tags": [
+        "completion",
+        "regret",
+        "te-form",
+        "colloquial"
+      ]
+    },
+    {
+      "title": "てある（状态） / te aru",
+      "path": "expressions/tearu.md",
+      "category": "expressions",
+      "jlpt": "N4",
+      "difficulty": "初级",
+      "tags": [
+        "state",
+        "preparation",
+        "te-form",
+        "transitive_verbs"
+      ]
+    },
+    {
+      "title": "という感じ（というかんじ） / to iu kanji",
+      "path": "expressions/to_iu_kanji.md",
+      "category": "expressions",
+      "jlpt": "N3",
+      "difficulty": "中级",
+      "tags": [
+        "impression",
+        "feeling",
+        "subjective",
+        "quotation"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "name": "particles",
+      "count": 1
+    },
+    {
+      "name": "expressions",
+      "count": 7
+    },
+    {
+      "name": "forms",
+      "count": 0
+    },
+    {
+      "name": "conjunctions",
+      "count": 0
+    },
+    {
+      "name": "honorifics",
+      "count": 0
+    }
+  ],
+  "metadata": {
+    "total_count": 8,
+    "last_updated": "2025-01-03T09:48:39.650Z",
+    "jlpt_distribution": {
+      "N1": 0,
+      "N2": 0,
+      "N3": 2,
+      "N4": 6,
+      "N5": 0
+    }
+  }
+}
