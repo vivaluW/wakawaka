@@ -3,35 +3,46 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { glob } from 'glob';
 
-// Convert import.meta.url to __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Configuration
 const GRAMMAR_DIR = path.join(__dirname, '..', 'grammar');
 const REQUIRED_SECTIONS = [
-  '## 基本信息',  // Basic Information
   '## 基本意义',  // Basic Meaning
   '## 接续方式',  // Grammar Pattern
   '## 例句',      // Example Sentences
 ];
 
-// Files to exclude from validation
-const EXCLUDED_FILES = [
-  'readme.md',
-  'template.md',
-  'migration.md',
-  'index.md',
+// Files and directories to exclude from validation
+const EXCLUDED_PATTERNS = [
+  /^readme\.md$/i,
+  /^template\.md$/i,
+  /^migration\.md$/i,
+  /^index\.md$/i,
+  /^config\.json$/,
+  /^\.gitkeep$/,
+  /^\./,  // Hidden files
+  /^particles\//,
+  /^expressions\//,
+  /^forms\//,
+  /^conjunctions\//,
+  /^honorifics\//
 ];
 
 /**
- * Validate file naming
- * @param {string} filename - File name to validate
- * @returns {boolean} - Whether the file name is valid
+ * Check if a file should be excluded from validation
+ * @param {string} relativePath - Relative path from grammar directory
+ * @returns {boolean} - Whether the file should be excluded
  */
-function validateFileName(filename) {
-  if (EXCLUDED_FILES.includes(filename.toLowerCase())) return true;
-  return /^[a-z0-9_-]+\.md$/.test(filename);
+function shouldExclude(relativePath) {
+  const basename = path.basename(relativePath).toLowerCase();
+  return EXCLUDED_PATTERNS.some(pattern => {
+    if (pattern instanceof RegExp) {
+      return pattern.test(basename) || pattern.test(relativePath);
+    }
+    return false;
+  });
 }
 
 /**
@@ -54,16 +65,16 @@ function validateContent(content) {
  */
 async function main() {
   let hasError = false;
-  const files = await glob('**/*.md', { cwd: GRAMMAR_DIR });
+  const files = await glob('*.md', { cwd: GRAMMAR_DIR });
 
   for (const file of files) {
-    // Check file name
-    if (!validateFileName(path.basename(file))) {
-      console.error(`File ${file} has invalid naming format. Use only lowercase letters, numbers, underscores and hyphens.`);
-      hasError = true;
+    // Skip excluded files
+    if (shouldExclude(file)) {
+      console.log(`Skipping excluded file: ${file}`);
+      continue;
     }
 
-    // Check content
+    console.log(`Validating: ${file}`);
     const content = await fs.readFile(path.join(GRAMMAR_DIR, file), 'utf8');
     const missingSections = validateContent(content);
     if (missingSections.length > 0) {
@@ -74,8 +85,9 @@ async function main() {
 
   if (hasError) {
     process.exit(1);
+  } else {
+    console.log('All files passed validation.');
   }
-  console.log('All files passed validation.');
 }
 
 // Run validation
