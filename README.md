@@ -1,48 +1,44 @@
-# WakaWaka - 日语学习笔记与练习生成器
+# WakaWaka Japanese Learning Platform
 
-这是一个日语学习辅助项目，包含语法笔记和交互式练习生成器。
-
-## 功能特点
-
-- 📘 **结构化的语法笔记**
-  - 按类别整理的语法点
-  - 详细的例句和解释
-  - 中日思维方式对比
-
-- 🎲 **交互式练习生成器**
-  - 支持日译中和中译日练习
-  - 自动生成基于已有语法点的练习
-  - 提供即时反馈和改进建议
-
-## 项目结构
+## Project Structure
 
 ```
-/grammar           # 语法笔记文件夹
-  /index.md       # 语法点索引
-  /*.md           # 各个语法点的详细说明
-/scripts          # 工具脚本
-/.github          # GitHub Actions 配置
+.
+├── grammar/           # Grammar documentation
+│   ├── particles/     # Particle-related grammar
+│   ├── expressions/    # Expression-related grammar
+│   ├── forms/         # Grammar forms
+│   ├── conjunctions/   # Conjunction-related grammar
+│   └── honorifics/     # Honorific-related grammar
+├── scripts/          # Utility scripts
+│   └── update_grammar_index.js  # Index generator
+├── docs/             # Generated documentation
+└── package.json      # Project configuration
+
+## Features
+
+- Organized grammar points by category
+- Automatic index generation
+- Markdown-based documentation
+- JSON output for frontend integration
+
+## Development
+
+### Setup
+
+```bash
+npm install
 ```
 
-## 使用方式
+### Update Grammar Index
 
-### 语法笔记
+```bash
+npm run update-index
+```
 
-1. 浏览 [grammar](/grammar) 文件夹中的内容
-2. 从 [index.md](/grammar/index.md) 开始系统学习
+## Contributing
 
-### 练习生成器
-
-访问 [https://vivaluw.github.io/wakawaka](https://vivaluw.github.io/wakawaka) 使用在线练习生成器。
-
-## 贡献指南
-
-欢迎通过以下方式贡献：
-
-1. 提交 Issue 报告问题或建议
-2. 提交 Pull Request 完善内容
-3. 帮助改进文档
-
-## 许可证
-
-MIT License - 查看 [LICENSE](LICENSE) 文件了解详情
+1. Place grammar files in appropriate category folders
+2. Follow the template format
+3. Run index update script
+4. Commit changes
