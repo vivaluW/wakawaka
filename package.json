@@ -2,20 +2,11 @@
   "name": "wakawaka",
   "version": "1.0.0",
   "description": "Japanese grammar learning platform",
-  "main": "index.js",
+  "main": "scripts/update_grammar_index.js",
   "type": "module",
   "scripts": {
     "update-index": "node scripts/update_grammar_index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vivaluW/wakawaka.git"
-  },
-  "keywords": [
-    "japanese",
-    "grammar",
-    "learning"
-  ],
   "dependencies": {
     "fs-extra": "^11.2.0",
     "glob": "^10.3.10",
