@@ -2,11 +2,10 @@ name: Update Grammar Index
 
 on:
   push:
-    branches: [ main, refactor/grammar-restructure ]
+    branches:
+      - refactor/grammar-restructure
     paths:
       - 'grammar/**/*.md'
-      - 'scripts/update_grammar_index.js'
-  workflow_dispatch:
 
 permissions:
   contents: write
@@ -14,37 +13,16 @@ permissions:
 jobs:
   update-index:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-
-    - name: Install dependencies
-      run: npm ci || npm install
-
-    - name: Create docs directory if not exists
-      run: mkdir -p docs
-
-    - name: Run index generator
-      run: node scripts/update_grammar_index.js
-
-    - name: Configure git
-      run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-
-    - name: Commit changes if any
-      run: |
-        git add grammar/index.md docs/grammar-points.json
-        git status
-        if [[ -n "$(git status --porcelain)" ]]; then
-          git commit -m "chore: update grammar index [skip ci]"
+      - uses: actions/checkout@v3
+      - name: Update timestamp
+        run: |
+          echo "# Grammar Index" > grammar/index.md
+          echo "Last updated: $(date -u)" >> grammar/index.md
+      - name: Commit changes
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add grammar/index.md
+          git commit -m "Update index timestamp"
           git push
-        fi
