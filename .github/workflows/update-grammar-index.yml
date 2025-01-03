@@ -6,6 +6,7 @@ on:
       - refactor/grammar-restructure
     paths:
       - 'grammar/**/*.md'
+      - 'scripts/update_grammar_index.js'
 
 permissions:
   contents: write
@@ -15,14 +16,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Update timestamp
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
         run: |
-          echo "# Grammar Index" > grammar/index.md
-          echo "Last updated: $(date -u)" >> grammar/index.md
+          npm ci || npm install
+
+      - name: Run index generator
+        run: node scripts/update_grammar_index.js
+
       - name: Commit changes
         run: |
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
-          git add grammar/index.md
-          git commit -m "Update index timestamp"
+          git add grammar/index.md docs/grammar-points.json
+          git commit -m "chore: update grammar index [skip ci]"
           git push
