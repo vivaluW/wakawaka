@@ -13,10 +13,10 @@
           "te_morau.md", 
           "te_hoshii.md", 
           "te_shimau.md",
-          "tearu.md"
+          "tearu.md",
+          "to_iu_kanji.md"
         ],
         "pending": [
-          "to_iu_kanji.md",
           "kamoshirenai.md",
           "nakereba_naranai.md"
         ]
@@ -53,19 +53,19 @@
     ],
     "migration_metrics": {
       "total_files": 16,
-      "completed_files": 5,
-      "completion_percentage": 31.25
+      "completed_files": 6,
+      "completion_percentage": 37.5
     }
   },
   "current_operation": {
-    "file": "to_iu_kanji.md",
+    "file": "kamoshirenai.md",
     "status": "pending",
     "retry_count": 0,
-    "last_attempt": "2024-01-03T11:30:00Z"
+    "last_attempt": "2024-01-03T12:00:00Z"
   },
   "batch_definitions": {
     "size": 1,
-    "current_batch": 5,
+    "current_batch": 6,
     "total_batches": 16
   }
 }
