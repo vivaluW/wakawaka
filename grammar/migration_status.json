@@ -1,17 +1,16 @@
 {
   "migration_status": {
     "completed_batches": [],
-    "in_progress": "particles",
-    "pending": ["expressions", "conjunctions", "forms", "honorifics"],
+    "in_progress": "expressions",
+    "pending": ["conjunctions", "forms", "honorifics"],
     "file_status": {
       "particles": {
         "completed": ["ga_conjunction.md"],
         "pending": ["wa_and_ga.md"]
       },
       "expressions": {
-        "completed": [],
+        "completed": ["te_morau.md"],
         "pending": [
-          "te_morau.md",
           "te_hoshii.md", 
           "te_shimau.md",
           "tearu.md",
@@ -46,38 +45,25 @@
     },
     "last_updated": "2024-01-03",
     "next_steps": [
-      "Complete particles category migration",
-      "Start expressions category migration",
+      "Complete expressions category migration",
       "Update index.md",
       "Generate new JSON structure"
     ],
     "migration_metrics": {
       "total_files": 16,
-      "completed_files": 1,
-      "completion_percentage": 6.25
+      "completed_files": 2,
+      "completion_percentage": 12.5
     }
   },
-  "batch_definitions": {
-    "size": 3,
-    "current_batch": 1,
-    "total_batches": 6
+  "current_operation": {
+    "file": "te_hoshii.md",
+    "status": "pending",
+    "retry_count": 0,
+    "last_attempt": "2024-01-03T10:00:00Z"
   },
-  "error_log": [],
-  "validation_rules": {
-    "required_sections": [
-      "\u57fa\u672c\u4fe1\u606f",
-      "\u57fa\u672c\u610f\u4e49",
-      "\u63a5\u7eed\u65b9\u5f0f",
-      "\u4f8b\u53e5",
-      "\u8bed\u7528\u8bf4\u660e",
-      "\u76f8\u5173\u8bed\u6cd5",
-      "\u6ce8\u610f\u4e8b\u9879",
-      "\u5143\u6570\u636e"
-    ],
-    "required_metadata": [
-      "\u521b\u5efa\u65e5\u671f",
-      "\u6700\u540e\u66f4\u65b0",
-      "\u6807\u7b7e"
-    ]
+  "batch_definitions": {
+    "size": 1,
+    "current_batch": 2,
+    "total_batches": 16
   }
 }
