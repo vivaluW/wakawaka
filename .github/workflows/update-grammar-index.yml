@@ -1,81 +1,84 @@
 name: Update Grammar Index
 
 on:
-  # Manual trigger
-  workflow_dispatch:
-  # Auto trigger
   push:
     branches:
       - refactor/grammar-restructure
     paths:
       - 'grammar/**/*.md'
       - 'scripts/**/*.js'
+  workflow_dispatch:
 
 jobs:
-  validate:
+  debug:
     runs-on: ubuntu-latest
     steps:
+      - name: Check Runner Environment
+        run: |
+          echo "Current directory: $PWD"
+          echo "Directory contents:"
+          ls -la
+          echo "\nEnvironment variables:"
+          env
+
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
 
-      - name: List files
+      - name: Check Repository Structure
         run: |
-          echo "Repository contents:"
-          ls -R
-
-      - name: Validate workflow
-        run: |
-          if [ ! -d "grammar" ]; then
-            echo "Error: grammar directory not found"
-            exit 1
-          fi
-          if [ ! -d "scripts" ]; then
-            echo "Error: scripts directory not found"
-            exit 1
-          fi
-          echo "Basic directory structure validated"
-
-  update-index:
-    needs: validate
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+          echo "Repository root contents:"
+          ls -la
+          echo "\ngrammar directory:"
+          ls -la grammar/ || echo "grammar directory not found"
+          echo "\nscripts directory:"
+          ls -la scripts/ || echo "scripts directory not found"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
-      - name: Install dependencies
+      - name: Debug Node Setup
         run: |
-          echo "Current directory:" $(pwd)
-          echo "Directory contents:" $(ls)
-          npm install || echo "npm install failed with $?"
+          echo "Node version: $(node --version)"
+          echo "NPM version: $(npm --version)"
+          echo "Working directory: $PWD"
 
-      - name: Debug environment
+      - name: Install Dependencies
         run: |
-          echo "Node version:" $(node --version)
-          echo "NPM version:" $(npm --version)
-          echo "Package.json contents:"
-          cat package.json
-          echo "\nInstalled packages:"
-          npm list || true
+          if [ -f "package.json" ]; then
+            echo "Found package.json. Contents:"
+            cat package.json
+            npm install
+          else
+            echo "Error: package.json not found"
+            exit 1
+          fi
 
-      - name: Update index
-        run: node scripts/update_grammar_index.js || echo "Index update failed with $?"
-
-      - name: Check changes
+      - name: List Node Modules
         run: |
-          git status
-          git diff
+          if [ -d "node_modules" ]; then
+            echo "Installed packages:"
+            npm list --depth=0
+          else
+            echo "Error: node_modules not found"
+            exit 1
+          fi
 
-      - name: Commit changes
+      - name: Run Index Generator
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add -A
-          git commit -m "chore: update grammar index" || echo "No changes to commit"
-          git push || echo "Push failed with $?"
+          if [ -f "scripts/update_grammar_index.js" ]; then
+            echo "Running index generator..."
+            node scripts/update_grammar_index.js
+          else
+            echo "Error: update_grammar_index.js not found"
+            exit 1
+          fi
+
+      - name: Check Generated Files
+        run: |
+          echo "Checking generated files..."
+          [ -f "grammar/index.md" ] && echo "index.md exists" || echo "index.md not found"
+          [ -f "docs/grammar-points.json" ] && echo "grammar-points.json exists" || echo "grammar-points.json not found"
