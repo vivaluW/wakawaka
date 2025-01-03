@@ -1,6 +1,9 @@
 name: Update Grammar Index
 
 on:
+  # Manual trigger
+  workflow_dispatch:
+  # Auto trigger
   push:
     branches:
       - refactor/grammar-restructure
@@ -8,62 +11,71 @@ on:
       - 'grammar/**/*.md'
       - 'scripts/**/*.js'
 
-permissions:
-  contents: write
-
 jobs:
-  update-index:
+  validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Check directory structure
+      - name: List files
         run: |
-          echo "Current directory:" 
-          pwd
-          echo "\nDirectory contents:"
-          ls -la
-          echo "\nGrammar directory contents:"
-          ls -la grammar/
+          echo "Repository contents:"
+          ls -R
+
+      - name: Validate workflow
+        run: |
+          if [ ! -d "grammar" ]; then
+            echo "Error: grammar directory not found"
+            exit 1
+          fi
+          if [ ! -d "scripts" ]; then
+            echo "Error: scripts directory not found"
+            exit 1
+          fi
+          echo "Basic directory structure validated"
+
+  update-index:
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
 
       - name: Install dependencies
         run: |
-          echo "Installing dependencies..."
-          npm install
-          echo "\nInstalled packages:"
-          npm list --depth=0
+          echo "Current directory:" $(pwd)
+          echo "Directory contents:" $(ls)
+          npm install || echo "npm install failed with $?"
 
-      - name: Run index generator
+      - name: Debug environment
         run: |
-          echo "Running index generator..."
-          node scripts/update_grammar_index.js
-          echo "\nGenerated files:"
-          ls -la grammar/index.md docs/grammar-points.json || true
+          echo "Node version:" $(node --version)
+          echo "NPM version:" $(npm --version)
+          echo "Package.json contents:"
+          cat package.json
+          echo "\nInstalled packages:"
+          npm list || true
+
+      - name: Update index
+        run: node scripts/update_grammar_index.js || echo "Index update failed with $?"
+
+      - name: Check changes
+        run: |
+          git status
+          git diff
 
       - name: Commit changes
         run: |
-          echo "Configuring git..."
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          
-          echo "\nChecking git status..."
-          git status
-          
-          echo "\nStaging changes..."
-          git add grammar/index.md docs/grammar-points.json || true
-          
-          echo "\nCommitting changes..."
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "chore: update grammar index [skip ci]"
-            git push
-          fi
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add -A
+          git commit -m "chore: update grammar index" || echo "No changes to commit"
+          git push || echo "Push failed with $?"
