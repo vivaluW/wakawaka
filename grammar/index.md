@@ -2,6 +2,9 @@
 
 ## 基本语法
 
+### 语法点文件迁移计划
+[详细说明](MIGRATION.md)
+
 ### 语法点名称 / Grammar Point Name
 [详细说明](TEMPLATE.md)
 
