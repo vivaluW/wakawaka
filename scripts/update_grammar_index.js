@@ -1,7 +1,6 @@
-// Grammar Index Generator
-
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
+const { globSync } = require('glob');
 
 // Configuration
 const GRAMMAR_DIR = 'grammar';
@@ -17,7 +16,7 @@ function parseMarkdown(content) {
   
   // Extract title
   const titleMatch = content.match(/^# (.+)/);
-  metadata.title = titleMatch ? titleMatch[1] : '';
+  metadata.title = titleMatch ? titleMatch[1].split('/')[0].trim() : '';
   
   // Extract basic info
   const categoryMatch = content.match(/\u7c7b\u522b\uff08Category\uff09: (\w+)/);
@@ -44,10 +43,26 @@ function parseMarkdown(content) {
 function generateMarkdownIndex(items) {
   let content = '# 日语语法索引\n\n';
   
+  // Add intro
+  content += '本索引按照语法类型分类整理。\n\n';
+  
+  // Add last update time
+  content += `最后更新：${new Date().toISOString().split('T')[0]}\n\n`;
+  
+  // Add statistics
+  content += '## 统计信息\n\n';
+  content += `- 总条目：${items.length}\n`;
+  for (const cat of CATEGORIES) {
+    const count = items.filter(item => item.category === cat).length;
+    content += `- ${cat}：${count}\n`;
+  }
+  content += '\n';
+
   // Group by category
   const groupedItems = {};
   CATEGORIES.forEach(cat => {
-    groupedItems[cat] = items.filter(item => item.category === cat);
+    groupedItems[cat] = items.filter(item => item.category === cat)
+      .sort((a, b) => a.title.localeCompare(b.title));
   });
   
   // Generate content for each category
@@ -56,7 +71,8 @@ function generateMarkdownIndex(items) {
     if (categoryItems.length > 0) {
       content += `\n## ${cat}\n\n`;
       categoryItems.forEach(item => {
-        content += `- [${item.title}](./${cat}/${item.filename}) (${item.jlpt})`;
+        content += `- [${item.title}](./${cat}/${item.filename})`;
+        if (item.jlpt) content += ` (${item.jlpt})`;
         if (item.tags.length > 0) {
           content += ` [${item.tags.join(', ')}]`;
         }
@@ -110,10 +126,12 @@ async function main() {
   // Scan all grammar files
   for (const category of CATEGORIES) {
     const categoryPath = path.join(GRAMMAR_DIR, category);
-    const files = fs.readdirSync(categoryPath).filter(f => f.endsWith('.md'));
+    if (!fs.existsSync(categoryPath)) continue;
+    
+    const files = globSync('*.md', { cwd: categoryPath });
     
     for (const file of files) {
-      const content = fs.readFileSync(path.join(categoryPath, file), 'utf8');
+      const content = await fs.readFile(path.join(categoryPath, file), 'utf8');
       const metadata = parseMarkdown(content);
       items.push({
         ...metadata,
@@ -125,11 +143,14 @@ async function main() {
   
   // Generate and write index.md
   const markdownContent = generateMarkdownIndex(items);
-  fs.writeFileSync(path.join(GRAMMAR_DIR, 'index.md'), markdownContent);
+  await fs.outputFile(path.join(GRAMMAR_DIR, 'index.md'), markdownContent);
+  
+  // Ensure docs directory exists
+  await fs.ensureDir('docs');
   
   // Generate and write JSON
   const jsonContent = generateJson(items);
-  fs.writeFileSync(
+  await fs.outputFile(
     path.join('docs', 'grammar-points.json'),
     JSON.stringify(jsonContent, null, 2)
   );
