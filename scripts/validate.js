@@ -14,35 +14,38 @@ const REQUIRED_SECTIONS = [
   '## 例句',      // Example Sentences
 ];
 
-// Files and directories to exclude from validation
-const EXCLUDED_PATTERNS = [
-  /^readme\.md$/i,
-  /^template\.md$/i,
-  /^migration\.md$/i,
-  /^index\.md$/i,
-  /^config\.json$/,
-  /^\.gitkeep$/,
-  /^\./,  // Hidden files
-  /^particles\//,
-  /^expressions\//,
-  /^forms\//,
-  /^conjunctions\//,
-  /^honorifics\//
+// Files to exclude from validation
+const EXCLUDED_FILES = [
+  'readme.md',
+  'template.md',
+  'migration.md',
+  'index.md',
+  '.gitkeep',
+  'config.json',
+  'grammar-points.json'
+];
+
+// Directories that should be validated
+const GRAMMAR_DIRS = [
+  'particles',
+  'expressions',
+  'forms',
+  'conjunctions',
+  'honorifics'
 ];
 
 /**
  * Check if a file should be excluded from validation
- * @param {string} relativePath - Relative path from grammar directory
+ * @param {string} filepath - File path to check
  * @returns {boolean} - Whether the file should be excluded
  */
-function shouldExclude(relativePath) {
-  const basename = path.basename(relativePath).toLowerCase();
-  return EXCLUDED_PATTERNS.some(pattern => {
-    if (pattern instanceof RegExp) {
-      return pattern.test(basename) || pattern.test(relativePath);
-    }
-    return false;
-  });
+function shouldExclude(filepath) {
+  const basename = path.basename(filepath).toLowerCase();
+  if (EXCLUDED_FILES.includes(basename)) {
+    console.log(`Skipping excluded file: ${basename}`);
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -65,28 +68,36 @@ function validateContent(content) {
  */
 async function main() {
   let hasError = false;
-  const files = await glob('*.md', { cwd: GRAMMAR_DIR });
 
-  for (const file of files) {
-    // Skip excluded files
-    if (shouldExclude(file)) {
-      console.log(`Skipping excluded file: ${file}`);
-      continue;
-    }
+  for (const dir of GRAMMAR_DIRS) {
+    const dirPath = path.join(GRAMMAR_DIR, dir);
+    if (!await fs.pathExists(dirPath)) continue;
 
-    console.log(`Validating: ${file}`);
-    const content = await fs.readFile(path.join(GRAMMAR_DIR, file), 'utf8');
-    const missingSections = validateContent(content);
-    if (missingSections.length > 0) {
-      console.error(`File ${file} is missing required sections:\n${missingSections.map(s => ` - ${s}`).join('\n')}`);
-      hasError = true;
+    console.log(`\nValidating files in ${dir}/`);
+    const files = await glob('*.md', { cwd: dirPath });
+
+    for (const file of files) {
+      if (shouldExclude(file)) continue;
+
+      const fullPath = path.join(dirPath, file);
+      console.log(`Checking: ${path.join(dir, file)}`);
+
+      const content = await fs.readFile(fullPath, 'utf8');
+      const missingSections = validateContent(content);
+
+      if (missingSections.length > 0) {
+        console.error(`File ${path.join(dir, file)} is missing required sections:\n${missingSections.map(s => ` - ${s}`).join('\n')}`);
+        hasError = true;
+      } else {
+        console.log(`✔ ${path.join(dir, file)} passed validation`);
+      }
     }
   }
 
   if (hasError) {
     process.exit(1);
   } else {
-    console.log('All files passed validation.');
+    console.log('\n✅ All files passed validation.');
   }
 }
 
