@@ -2,33 +2,39 @@ name: Update Grammar Index
 
 on:
   push:
-    branches:
-      - refactor/grammar-restructure
     paths:
       - 'grammar/**/*.md'
-      - 'scripts/**/*.js'
-  workflow_dispatch:
+    branches:
+      - 'refactor/grammar-restructure'
 
 jobs:
-  validate:
+  update-index:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v3
         with:
-          node-version: '18'
+          ref: refactor/grammar-restructure
+          fetch-depth: 0
+          
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
 
       - name: Install dependencies
-        run: npm install
-
-      - name: Run validation
-        run: node scripts/validate.js
-
-      - name: List validated files
-        if: success()
         run: |
-          echo "Successfully validated files:"
-          find grammar -name "*.md" -type f
+          npm install gray-matter
+          npm install glob
+          
+      - name: Update Index and JSON
+        run: |
+          node .github/scripts/update-grammar-index.js
+          
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add grammar/index.md
+          git add grammar-points.json
+          git commit -m "Update grammar index and JSON" || echo "No changes to commit"
+          git push
