@@ -25,7 +25,8 @@ const EXCLUDED_FILES = [
   'grammar-points.json',
   'deleted.md',
   'conditional_to.md',     // Migrated
-  'nakereba_naranai.md'    // Migrated
+  'nakereba_naranai.md',   // Migrated
+  'te_hoshii.md'           // Migrated
 ];
 
 // Directories that should be validated
