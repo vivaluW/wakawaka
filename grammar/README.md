@@ -1,17 +1,40 @@
-# Japanese Grammar Points
+# 日语语法索引 / Japanese Grammar Index
 
-本目录包含日语语法点的详细说明。
+## 目录结构 / Directory Structure
 
-## 目录结构
+- `particles/`: 助词相关语法（Particles-related grammar）
+  - 助词的用法
+  - 助词的变化
+  - 助词的组合
 
-- `particles/`: 助词相关语法
-- `expressions/`: 表达方式相关语法
-- `forms/`: 语法形式
-- `conjunctions/`: 接续词相关语法
-- `honorifics/`: 敬语相关语法
+- `expressions/`: 表达方式相关语法（Expression-related grammar）
+  - 特定表达方式
+  - 情感表达
+  - 意向表达
 
-## 文件命名规则
+- `forms/`: 语法形式（Grammar forms）
+  - 动词变化形
+  - 形容词变化形
+  - 名词相关形式
 
-1. 所有文件使用罗马字命名
-2. 格式：`[语法类型]_[罗马字].md`
-3. 示例：`particles_wa.md`, `expressions_ndesu.md`
+- `conjunctions/`: 接续词相关语法（Conjunction-related grammar）
+  - 从属句接续
+  - 并列句接续
+  - 时间关系接续
+
+- `honorifics/`: 敬语相关语法（Honorific-related grammar）
+  - 敬语
+  - 谐语
+  - 礼貌语
+
+## 文件命名规则 / File Naming Convention
+
+1. 使用小写字母、数字和下划线
+2. 文件名使用罗马字拼写
+3. 格式：`[语法形式]_[罗马字].md`
+
+## 索引更新 / Index Updates
+
+- 每个目录下的内容会自动更新到 index.md
+- 定期生成 JSON 格式的索引文件
+- 文件有更新时自动触发索引更新
