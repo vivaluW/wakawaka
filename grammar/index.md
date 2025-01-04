@@ -1,112 +1,31 @@
-# 日语语法点索引
+# 日语语法索引
 
-## 基本语法
+本索引按照语法类型分类整理。
 
-### 语法点文件迁移计划
-[详细说明](MIGRATION.md)
+最后更新：2025-01-03
 
-### 语法点名称 / Grammar Point Name
-[详细说明](TEMPLATE.md)
+## 统计信息
 
-### Basic Grammar Points
-[详细说明](basic_grammar_points.md)
+- 总条目：10
+- particles：1
+- expressions：9
+- forms：0
+- conjunctions：0
+- honorifics：0
 
-### 条件句と和てしまう的用法
-[详细说明](conditional_to_and_te_shimau.md)
 
-### い形容词的变化与用法
-[详细说明](i-adjective.md)
+## particles
 
-##
+- [が助词（转折用法）](./particles/ga_conjunction.md) (N4) [conjunction, intermediate, written_japanese]
 
-### のかもしれない (Kamoshirenai)
-[详细说明](kamoshirenai.md)
+## expressions
 
-### ことができる (Koto dekiru)
-[详细说明](koto_dekiru.md)
-
-### マークシート (Mark Sheet) 相关语法点
-[详细说明](marksheet.md)
-
-### なければ・なくては + ならない/いけない
-[详细说明](nakereba_naranai.md)
-
-### なくなる（なくなる）
-[详细说明](nakunaru.md)
-
-### なのに
-[详细说明](nanoni.md)
-
-### のような
-[详细说明](noyouna.md)
-
-### しかない
-[详细说明](shikanai.md)
-
-### たまま
-[详细说明](tamama.md)
-
-### て形 + 時間 + 経過
-[详细说明](te_form_duration.md)
-
-### ～てほしい (Te hoshii)
-[详细说明](te_hoshii.md)
-
-### てもらう（てもらう）
-[详细说明](te_morau.md)
-
-### てある
-[详细说明](tearu.md)
-
-### という感じ（というかんじ）
-[详细说明](to_iu_kanji.md)
-
-### よろしければ
-[详细说明](yoroshikereba.md)
-
-## 转折表达
-
-### 复杂句子结构
-[详细说明](complex_sentence_patterns.md)
-
-例句：
-- 「寝てから食べる」（睡了之后再吃）
-- 「春になると桜が咲く」（一到春天樱花就开）
-
-### と的条件用法
-[详细说明](conditional_to.md)
-
-##
-
-### が转折助词
-[详细说明](ga_conjunction.md)
-
-##
-
-例句：
-- 「用があったが、都合がついて、飲み会に行くことができた」（虽然有事，但是安排好了，能去聚会了）
-- 「雨が降っていたが、働きに行った」（虽然下雨，但还是去上班了）
-
-### のに转折助词
-[详细说明](noni.md)
-
-##
-
-例句：
-- 「今8時なのに、8時3分になっている」（明明现在是8点，却已经变成8点3分了）
-- 「学生なのに、勉強しない」（明明是学生，却不学习）
-
-## 原因和结果
-
-### ので 的用法
-[详细说明](node.md)
-
-##
-
-## 状态变化
-
-### ～てしまう的用法
-[详细说明](te_shimau.md)
-
-##
-
+- [Test File](./expressions/test.md)
+- [てある（状态）](./expressions/tearu.md) (N4) [state, preparation, te-form, transitive_verbs]
+- [てしまう（完了・后悔）](./expressions/te_shimau.md) (N4) [completion, regret, te-form, colloquial]
+- [テスト（テスト）](./expressions/test_workflow.md) (N5) [test]
+- [てほしい（愿望）](./expressions/te_hoshii.md) (N4) [request, desire, te-form, wish]
+- [てもらう（请求帮助）](./expressions/te_morau.md) (N4) [request, help, te-form, basic]
+- [という感じ（というかんじ）](./expressions/to_iu_kanji.md) (N3) [impression, feeling, subjective, quotation]
+- [なければ・なくては + ならない](./expressions/nakereba_naranai.md) (N4) [necessity, condition, obligation, must]
+- [のかもしれない（推测）](./expressions/kamoshirenai.md) (N3) [speculation, possibility, inference, polite]

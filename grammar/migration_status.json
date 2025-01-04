@@ -1,0 +1,53 @@
+{
+  "migration_status": {
+    "completed_batches": [],
+    "in_progress": "expressions",
+    "pending": ["conjunctions", "forms", "honorifics"],
+    "file_status": {
+      "particles": {
+        "completed": ["ga_conjunction.md"],
+        "pending": ["wa_and_ga.md"]
+      },
+      "expressions": {
+        "completed": [
+          "te_morau.md",
+          "te_hoshii.md",
+          "te_shimau.md",
+          "tearu.md",
+          "to_iu_kanji.md",
+          "kamoshirenai.md",
+          "nakereba_naranai.md"
+        ],
+        "pending": []
+      },
+      "conjunctions": {
+        "completed": [],
+        "pending": [
+          "conditional_to.md",
+          "nanoni.md",
+          "noni.md",
+          "node.md"
+        ]
+      },
+      "forms": {
+        "completed": [],
+        "pending": [
+          "i-adjective.md",
+          "te_form_duration.md",
+          "nakunaru.md"
+        ]
+      },
+      "honorifics": {
+        "completed": [],
+        "pending": [
+          "yoroshikereba.md"
+        ]
+      }
+    },
+    "last_updated": "2024-01-03",
+    "deleted_files": [
+      "conditional_to.md",
+      "nakereba_naranai.md"
+    ]
+  }
+}

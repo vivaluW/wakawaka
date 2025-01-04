@@ -2,85 +2,39 @@ name: Update Grammar Index
 
 on:
   push:
-    branches:
-      - main
     paths:
-      - 'grammar/**'
+      - 'grammar/**/*.md'
+    branches:
+      - 'refactor/grammar-restructure'
 
 jobs:
   update-index:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v3
         with:
+          ref: refactor/grammar-restructure
           fetch-depth: 0
-      
-      - name: Setup Node.js
+          
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '16'
 
-      - name: Create grammar-points.json
+      - name: Install dependencies
         run: |
-          node <<'EOF'
-          const fs = require('fs');
-          const path = require('path');
-
-          // Read all .md files from grammar directory
-          const grammarDir = 'grammar';
-          const files = fs.readdirSync(grammarDir)
-            .filter(file => 
-              file.endsWith('.md') && 
-              !['index.md', 'marksheet.md', 'basic_grammar_points.md'].includes(file)
-            );
-
-          const grammarPoints = files.map(file => {
-            const content = fs.readFileSync(path.join(grammarDir, file), 'utf8');
-            const titleMatch = content.match(/^# ([^\n]+)/m);
-            const descMatch = content.match(/^## 基本意义\s*([^\n]+)/m);
-            
-            const id = file.replace('.md', '');
-            const title = titleMatch ? titleMatch[1].trim() : id;
-            const description = descMatch ? descMatch[1].trim() : '';
-
-            return {
-              id,
-              title,
-              description,
-              path: `/grammar/${id}`
-            };
-          });
-
-          const json = {
-            grammar_points: grammarPoints.sort((a, b) => a.id.localeCompare(b.id)),
-            last_updated: new Date().toISOString()
-          };
-
-          fs.writeFileSync('grammar-points.json', JSON.stringify(json, null, 2));
-          EOF
-
-      - name: Deploy to GitHub Pages
+          npm install gray-matter
+          npm install glob
+          
+      - name: Update Index and JSON
         run: |
-          git config --global user.name 'GitHub Actions Bot'
-          git config --global user.email '<>'
+          node .github/scripts/update-grammar-index.js
           
-          # Save main branch grammar-points.json
-          cp grammar-points.json /tmp/grammar-points.json
-          
-          # Switch to gh-pages branch
-          git fetch origin gh-pages
-          git checkout gh-pages
-          
-          # Ensure docs directory exists
-          mkdir -p docs
-          
-          # Copy the file and commit
-          cp /tmp/grammar-points.json docs/
-          git add docs/grammar-points.json
-          git commit -m "Update grammar-points.json" || echo "No changes to commit"
-          git push origin gh-pages
-          
-          # Switch back to main branch
-          git checkout -
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add grammar/index.md
+          git add grammar-points.json
+          git commit -m "Update grammar index and JSON" || echo "No changes to commit"
+          git push
