@@ -22,7 +22,10 @@ const EXCLUDED_FILES = [
   'index.md',
   '.gitkeep',
   'config.json',
-  'grammar-points.json'
+  'grammar-points.json',
+  'deleted.md',
+  'conditional_to.md',     // Migrated
+  'nakereba_naranai.md'    // Migrated
 ];
 
 // Directories that should be validated
@@ -71,7 +74,10 @@ async function main() {
 
   for (const dir of GRAMMAR_DIRS) {
     const dirPath = path.join(GRAMMAR_DIR, dir);
-    if (!await fs.pathExists(dirPath)) continue;
+    if (!await fs.pathExists(dirPath)) {
+      console.log(`Skipping non-existent directory: ${dir}`);
+      continue;
+    }
 
     console.log(`\nValidating files in ${dir}/`);
     const files = await glob('*.md', { cwd: dirPath });
@@ -82,14 +88,19 @@ async function main() {
       const fullPath = path.join(dirPath, file);
       console.log(`Checking: ${path.join(dir, file)}`);
 
-      const content = await fs.readFile(fullPath, 'utf8');
-      const missingSections = validateContent(content);
+      try {
+        const content = await fs.readFile(fullPath, 'utf8');
+        const missingSections = validateContent(content);
 
-      if (missingSections.length > 0) {
-        console.error(`File ${path.join(dir, file)} is missing required sections:\n${missingSections.map(s => ` - ${s}`).join('\n')}`);
+        if (missingSections.length > 0) {
+          console.error(`File ${path.join(dir, file)} is missing required sections:\n${missingSections.map(s => ` - ${s}`).join('\n')}`);
+          hasError = true;
+        } else {
+          console.log(`✔ ${path.join(dir, file)} passed validation`);
+        }
+      } catch (error) {
+        console.error(`Error reading file ${path.join(dir, file)}: ${error.message}`);
         hasError = true;
-      } else {
-        console.log(`✔ ${path.join(dir, file)} passed validation`);
       }
     }
   }
